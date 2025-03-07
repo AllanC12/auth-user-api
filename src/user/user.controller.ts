@@ -22,21 +22,17 @@ export class UserController {
 
   @Get()
   async GetAllUsers() {
-    return { users: [] };
+    return this.userService.readAllUsers();
   }
 
   @Get(':id')
   async GetOneUser(@Param('id', ParseIntPipe) id) {
-    return { user: {}, id };
+     return this.userService.readOneUser(id);
   }
 
   @Patch(':id')
-  async UpdateUser(@Body() body: UpdateUserDTO, @Param('id', ParseIntPipe) id) {
-    return {
-      method: 'Patch',
-      body,
-      id,
-    };
+  async UpdateUser(@Body() data: UpdateUserDTO, @Param('id', ParseIntPipe) id) {
+      return this.userService.updateUser(data, id);
   }
 
   @Delete(':id')
