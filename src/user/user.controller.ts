@@ -7,11 +7,13 @@ import {
   Body,
   Param,
   ParseIntPipe,
+  UseInterceptors,
 } from '@nestjs/common';
 import { CreateUserDTO } from './dto/create-user.dto';
 import { UpdateUserDTO } from './dto/update-user.dto';
 import { UserService } from './user.service';
-
+import { LogInterceptor } from 'src/interceptors/log.interceptor';
+@UseInterceptors(LogInterceptor)
 @Controller('users')
 export class UserController {
   constructor(private readonly userService: UserService) {}
@@ -27,16 +29,17 @@ export class UserController {
 
   @Get(':id')
   async GetOneUser(@Param('id', ParseIntPipe) id) {
-     return this.userService.readOneUser(id);
+    return this.userService.readOneUser(id);
   }
 
   @Patch(':id')
   async UpdateUser(@Body() data: UpdateUserDTO, @Param('id', ParseIntPipe) id) {
-      return this.userService.updateUser(data, id);
+    return this.userService.updateUser(data, id);
   }
 
   @Delete(':id')
   async DeleteUSer(@Param('id', ParseIntPipe) id) {
-    return { id };
+
+    return this.userService.deleteUser(id);
   }
 }
