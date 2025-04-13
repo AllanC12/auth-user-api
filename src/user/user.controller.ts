@@ -6,6 +6,7 @@ import {
   Delete,
   Body,
   UseInterceptors,
+  UseGuards
 } from '@nestjs/common';
 import { CreateUserDTO } from './dto/create-user.dto';
 import { UpdateUserDTO } from './dto/update-user.dto';
@@ -17,7 +18,7 @@ import { ParamId } from 'src/decorators/user-id.decorator';
 @Controller('users')
 export class UserController {
   constructor(private readonly userService: UserService) {}
-  @Post()
+  @Post('create')
   async Create(@Body() data: CreateUserDTO) {
     return this.userService.createUser(data);
   }
