@@ -5,17 +5,9 @@ import { UserService } from './user.service';
 import { UserMiddleware } from 'src/middlewares/user-id.middleware';
 
 @Module({
-    imports: [PrismaModule],
-    controllers: [UserController],
-    providers: [UserService],
-    exports: [UserService]
+  imports: [PrismaModule],
+  controllers: [UserController],
+  providers: [UserService],
+  exports: [UserService],
 })
-export class UserModule implements NestModule{
-
-    configure(consumer: MiddlewareConsumer){
-        consumer.apply(UserMiddleware).forRoutes({
-            path: 'users/:id',
-            method: RequestMethod.ALL
-        })
-    }
-}
+export class UserModule {}

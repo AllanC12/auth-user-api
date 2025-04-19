@@ -3,7 +3,6 @@ import {
   IsEmail,
   IsStrongPassword,
   IsOptional,
-  IsDateString,
 } from 'class-validator';
 
 export class CreateUserDTO {
@@ -22,5 +21,5 @@ export class CreateUserDTO {
   password: string;
 
   @IsOptional()
-  BirthAt: string;
+  birthAt: Date | undefined;
 }

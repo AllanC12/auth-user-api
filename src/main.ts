@@ -9,15 +9,15 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
 
   const config = new DocumentBuilder()
-  .setTitle('Minha API')
-  .setDescription('Documentação da API NestJS')
-  .setVersion('1.0')
-  .build();
-  
+    .setTitle('Auth-user-api')
+    .setDescription('Documentação da API NestJS')
+    .setVersion('1.0')
+    .build();
+
   app.enableCors({
     origin: 'http://localhost:4200', // URL do Angular
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    allowedHeaders: 'Content-Type,Authorization'
+    allowedHeaders: 'Content-Type',
   });
 
   const document = SwaggerModule.createDocument(app, config);
